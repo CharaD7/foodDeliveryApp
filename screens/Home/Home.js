@@ -13,6 +13,7 @@ import { FONTS, SIZES, COLORS, dummyData, icons } from "../../constants";
 
 // Custom components
 import { HorizontalFoodCard } from "../../components";
+import { VerticalFoodCard } from "../../components";
 
 // Section
 const Section = ({ title, onPress, children }) => {
@@ -46,6 +47,7 @@ const Home = () => {
 
 	const [selectedCategoryId, setSelectedCategoryId] = useState(1);
 	const [selectedMenuType, setSelectedMenuType] = useState(1);
+	const [popular, setPopular] = useState([]);
 	const [recommends, setRecommends] = useState([]);
 	const [menuList, setMenuList] = useState([]);
 
@@ -58,8 +60,14 @@ const Home = () => {
 		// retrieve the recommended menu
 		let selectedRecommend = dummyData.menu.find(a => a.name == "Recommended");
 
+		// retrieve the popular menu
+		let selectedPopular = dummyData.menu.find(a => a.name == "Popular");
+
 		// set the recommended menu based on the category id
 		setRecommends(selectedRecommend?.list.filter(a => a.categories.includes(categoryId)));
+
+		// set the popular menu based on the category id
+		setPopular(selectedPopular?.list.filter(a => a.categories.includes(categoryId)));
 
 		// find menu based on menuTypeId
 		let selectedMenu = dummyData.menu.find(a => a.id == menuTypeId);
@@ -193,6 +201,33 @@ const Home = () => {
 		)
 	}
 
+	function renderPopularSection() {
+		return (
+			<Section
+				title="Popular Near You"
+				onPress={() => console.log('Show all popular items')}
+			>
+				<FlatList
+					data={popular}
+					keyExtractor={item => `${item.id}`}
+					horizontal
+					showsHorizontalScrollIndicator={false}
+					renderItem={({ item, index }) => (
+						<VerticalFoodCard
+							containerStyle={{
+								marginLeft : index == 0 ? SIZES.padding : 18,
+								padding : 18,
+								marginRight : index == popular.length - 1 ? SIZES.padding : 0
+							}}
+							item={item}
+							onPress={() => console.log('VerticalFoodCard')}
+						/>
+					)}
+				/>
+			</Section>
+		)
+	}
+
 	return (
 		<View
 			style={{
@@ -209,6 +244,9 @@ const Home = () => {
 				showsVerticalScrollIndicator={false}
 				ListHeaderComponent={
 					<View>
+						{/* Popular section */}
+						{renderPopularSection()}
+
 						{/* Recommended Section */}
 						{renderRecommendedSection()}
 
