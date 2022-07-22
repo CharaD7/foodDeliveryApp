@@ -36,7 +36,7 @@ import {
 } from '../screens';
 
 // extras
-import { 
+import {
 	COLORS,
 	FONTS,
 	SIZES,
@@ -48,9 +48,9 @@ import {
 const TabButton = ({ label, icon, isFocused, outerContainerStyle, innerContainerStyle, onPress }) => {
 	return (
 		<TouchableWithoutFeedback onPress={onPress}>
-			<Animated.View 
+			<Animated.View
 				style={[
-					{ 
+					{
 					flex : 1,
 					alignItems : 'center',
 					justifyContent : 'center'
@@ -79,7 +79,7 @@ const TabButton = ({ label, icon, isFocused, outerContainerStyle, innerContainer
 								tintColor : isFocused ? COLORS.white : COLORS.gray
 						}}
 					/>
-					{isFocused && 
+					{isFocused &&
 						<Text
 							numberOfLines={1}
 							style={{
@@ -251,7 +251,7 @@ const MainLayout = ({ drawerAnimationStyle, navigation, selectedTab, setSelected
 			}}
 		>
 			{/* Header */}
-			<Header 
+			<Header
 				containerStyle={{
 					height : 50,
 					paddingHorizontal : SIZES.padding,
@@ -327,8 +327,8 @@ const MainLayout = ({ drawerAnimationStyle, navigation, selectedTab, setSelected
 			</View>
 
 			{/* Footer */}
-			<View style={{ height : 90, justifyContent : 'flex-end'}}>
-				<LinearGradient 
+			<View style={{ height : 100, justifyContent : 'flex-end'}}>
+				<LinearGradient
 					start={{ x : 0, y : 0 }}
 					end={{ x : 0, y : 4 }}
 					colors={[ COLORS.transparent, COLORS.lightGray1 ]}
@@ -337,7 +337,7 @@ const MainLayout = ({ drawerAnimationStyle, navigation, selectedTab, setSelected
 						top : -20,
 						left : 0,
 						right : 0,
-						height : 70,
+						height : 100,
 						borderTopLeftRadius : 15,
 						borderTopRightRadius : 15
 					}}
@@ -355,7 +355,7 @@ const MainLayout = ({ drawerAnimationStyle, navigation, selectedTab, setSelected
 						backgroundColor : COLORS.white
 					}}
 				>
-					<TabButton 
+					<TabButton
 						label={constants.screens.home}
 						icon={icons.home}
 						isFocused={selectedTab == constants.screens.home}
@@ -363,7 +363,7 @@ const MainLayout = ({ drawerAnimationStyle, navigation, selectedTab, setSelected
 						innerContainerStyle={homeColorStyle}
 						onPress={() => setSelectedTab(constants.screens.home)}
 					/>
-					<TabButton 
+					<TabButton
 						label={constants.screens.search}
 						icon={icons.search}
 						isFocused={selectedTab == constants.screens.search}
@@ -371,7 +371,7 @@ const MainLayout = ({ drawerAnimationStyle, navigation, selectedTab, setSelected
 						innerContainerStyle={searchColorStyle}
 						onPress={() => setSelectedTab(constants.screens.search)}
 					/>
-					<TabButton 
+					<TabButton
 						label={constants.screens.cart}
 						icon={icons.cart}
 						isFocused={selectedTab == constants.screens.cart}
@@ -379,7 +379,7 @@ const MainLayout = ({ drawerAnimationStyle, navigation, selectedTab, setSelected
 						innerContainerStyle={cartColorStyle}
 						onPress={() => setSelectedTab(constants.screens.cart)}
 					/>
-					<TabButton 
+					<TabButton
 						label={constants.screens.favourite}
 						icon={icons.favourite}
 						isFocused={selectedTab == constants.screens.favourite}
@@ -387,7 +387,7 @@ const MainLayout = ({ drawerAnimationStyle, navigation, selectedTab, setSelected
 						innerContainerStyle={favouriteColorStyle}
 						onPress={() => setSelectedTab(constants.screens.favourite)}
 					/>
-					<TabButton 
+					<TabButton
 						label={constants.screens.notification}
 						icon={icons.notification}
 						isFocused={selectedTab == constants.screens.notification}
